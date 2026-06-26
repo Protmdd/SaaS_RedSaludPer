@@ -1,0 +1,30 @@
+# docker-compose para desarrollo local.
+# Levanta el backend FastAPI y el frontend Next.js en una sola red para que
+# se descubran por nombre de servicio. Las credenciales sensibles se cargan
+# desde un archivo .env en la raíz del proyecto.
+
+services:
+  backend:
+    build: ./backend
+    container_name: redsalud-backend
+    ports:
+      - "8000:8000"
+    environment:
+      ENVIRONMENT: development
+      SECRET_KEY: ${SECRET_KEY:-cambiar-en-produccion-clave-secreta-larga-y-aleatoria}
+      SUPABASE_URL: ${SUPABASE_URL:-}
+      SUPABASE_KEY: ${SUPABASE_KEY:-}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY:-}
+      CORS_ORIGINS: '["http://localhost:3000"]'
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: redsalud-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped

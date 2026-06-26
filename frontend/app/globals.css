@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sistema de diseño RedSalud
+ * Colores en formato HSL para permitir manipulación con Tailwind.
+ * Paleta institucional: azul sanitario + verde acento.
+ */
+@layer base {
+  :root {
+    /* Lienzo y superficies */
+    --background: 210 30% 96%;          /* Gris azulado del lienzo */
+    --foreground: 215 30% 17%;          /* Texto principal */
+    --card: 0 0% 100%;                  /* Superficie de tarjeta */
+    --card-foreground: 215 30% 17%;
+    --muted: 215 20% 95%;
+    --muted-foreground: 215 15% 50%;
+
+    /* Marca: azul institucional */
+    --primary: 204 67% 33%;             /* #1B5E8C */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secundario y acento (verde sanitario) */
+    --secondary: 215 20% 94%;
+    --secondary-foreground: 215 30% 17%;
+    --accent: 168 76% 28%;              /* #11806A */
+    --accent-foreground: 0 0% 100%;
+
+    /* Estados */
+    --success: 145 63% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Componentes */
+    --border: 215 20% 88%;
+    --input: 215 20% 92%;
+    --ring: 204 67% 33%;
+    --radius: 0.6rem;
+
+    --font-sans: "Inter", system-ui, sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+  }
+
+  h1 { @apply text-3xl font-semibold; }
+  h2 { @apply text-2xl font-semibold; }
+  h3 { @apply text-xl font-semibold; }
+  h4 { @apply text-lg font-medium; }
+}
+
+/* Utilidades específicas del dominio */
+@layer components {
+  .surface-elevated {
+    @apply bg-card rounded-lg border shadow-sm;
+  }
+  .badge-success { @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-success/10 text-success; }
+  .badge-warning { @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-warning/10 text-warning; }
+  .badge-danger  { @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-destructive/10 text-destructive; }
+  .badge-info    { @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary; }
+  .badge-accent  { @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent; }
+}
+
+/* Leaflet: el CSS de la librería se importa desde el componente que lo usa */
