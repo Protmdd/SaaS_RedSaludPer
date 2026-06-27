@@ -5,8 +5,7 @@ a establecimientos del MINSA y EsSalud en Lima Metropolitana. Permite a los
 pacientes registrarse, buscar disponibilidad en múltiples hospitales en
 tiempo real, y reservar y gestionar sus citas desde una interfaz web.
 
-Esta es la **arquitectura de producción** del proyecto, sucesora del MVP
-inicial construido con Streamlit. Implementa la separación profesional entre
+Esta es la **arquitectura de producción**  implementa la separación profesional entre
 frontend (Next.js), backend (FastAPI) y base de datos (Supabase) que
 permite escalar, asegurar y evolucionar cada componente de manera
 independiente.
@@ -82,18 +81,6 @@ creadas se mantienen en memoria hasta reiniciar el servidor.
 | Cache | Redis (opcional) | Caché distribuido para consultas recurrentes |
 | Hosting | Docker, Vercel, AWS/GCP | Despliegue containerizado, escalado horizontal |
 
-### Ventajas sobre el MVP anterior (Streamlit)
-
-- **Separación frontend/backend**: el cliente nunca recibe credenciales de
-  base de datos; toda lógica sensible vive en el servidor.
-- **API reutilizable**: la misma API puede consumirse desde web, móvil o
-  integraciones de terceros.
-- **Escalabilidad horizontal**: frontend y backend escalan de forma
-  independiente; el frontend puede servirse desde CDN.
-- **Control visual completo**: Next.js + Tailwind permiten un diseño
-  profesional sin las limitaciones de CSS de Streamlit.
-- **Seguridad robusta**: JWT con expiración, validación estricta de
-  entrada, protección CORS configurable.
 
 ## Estructura del repositorio
 
